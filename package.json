@@ -1,0 +1,39 @@
+{
+  "name": "redis-async",
+  "version": "1.0.0",
+  "description": "A TypeScript-friendly, feature-complete, asynchronous Redis client",
+  "main": "dist/redis.js",
+  "types": "dist/redis.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/millanp/redis-toolkit.git"
+  },
+  "keywords": [
+    "Redis",
+    "TypeScript"
+  ],
+  "author": "Millan Philipose",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/millanp/redis-toolkit/issues"
+  },
+  "homepage": "https://github.com/millanp/redis-toolkit#readme",
+  "dependencies": {
+    "@types/bluebird": "^3.5.27",
+    "@types/node": "^12.7.2",
+    "@types/redis": "^2.8.13",
+    "assert": "^2.0.0",
+    "bluebird": "^3.5.5",
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
+  }
+}
