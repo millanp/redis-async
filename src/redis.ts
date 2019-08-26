@@ -1,6 +1,5 @@
 import { RedisClient, createClient, Multi } from 'redis';
 import { promisifyAll, try as bluebirdTry } from 'bluebird';
-import assert = require('assert');
 
 export interface AsyncRedisClient extends RedisClient {
     getAllKeys(database: number): Promise<string[]>;
@@ -58,28 +57,27 @@ export function createAsyncClient(...args: any[]): AsyncRedisClient {
         (client);
 
     client.getAllKeys = (database: number): Promise<string[]> => {
-        const match = '*';
-        let cursor = '0';
-        let keys: string[] = [];
-        // Recursive call to Redis SCAN. Recursion continues until cursor = '0'
-        function innerscan(): Promise<string[]> {
-            return (client =>
-                client
+        return (client => {
+            const match = '*';
+            let cursor = '0';
+            // Recursive call to Redis SCAN. Recursion continues until cursor = '0'
+            async function innerscan(): Promise<string[]> {
+                let keys: string[] = [];
+                return client
                     .runInDb(database, multi =>
                         multi.scan(cursor, 'MATCH', match, 'COUNT', '100')
                     )
-                    .then(resArr => {
-                        const res = resArr[0];
+                    .then(async res => {
                         cursor = res[0];
                         keys.push(...res[1]);
                         if (cursor === '0') {
                             return keys;
                         }
-                        return innerscan();
-                    }))(client);
-        }
-
-        return bluebirdTry(innerscan);
+                        return keys.concat(await innerscan());
+                    });
+            }
+            return bluebirdTry(innerscan);
+        })(client);
     };
 
     return client;
