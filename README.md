@@ -58,7 +58,7 @@ console.log(response);
 
 ## Working with databases
 
-To cut down on the clutter of selecting  databases, `redis-async` provides helper methods `runInDb` and `runMultipleInDb`. They work the same way as `runSingle` and `runMultiple`, respectively. The only difference is that you need to pass the database index as an argument.
+To cut down on the clutter of selecting  databases, `redis-async` provides helper methods `runInDb` and `runMultipleInDb`. All commands passed to either method are guaranteed to be run in the correct database. The database index is the first parameter of both methods.
 
 #### Javascript and TypeScript
 
