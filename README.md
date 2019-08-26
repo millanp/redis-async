@@ -9,14 +9,14 @@ npm install @mjplabs/redis-async
 
 ## Initializing a Redis client
 
-### Javascript
+#### Javascript
 
 ```javascript
 var redis = require('redis-async');
 var client = redis.createAsyncClient();
 ```
 
-### TypeScript
+#### TypeScript
 
 ```typescript
 import { createAsyncClient } from 'redis-async';
@@ -31,7 +31,7 @@ To run async commands, you will need to use either `client.runSingle` or `client
 
 `runMultiple` takes a function as a parameter. This function is passed an empty `node_redis.Multi` object, and it must return another `Multi` object loaded with all of the commands you wish to run. `runMultiple` returns a Promise linked to an array of the Redis cache's response to each command in the chain.
 
-### Javascript and TypeScript
+#### Javascript and TypeScript
 
 ```typescript
 let response = await client.runMultiple(m => m
@@ -47,7 +47,7 @@ console.log(response);
 
 `runSingle` works the exact same way, except it assumes that only one command is being run. This means that it knows to return a single string instead of an array of strings. 
 
-### Javascript and TypeScript
+#### Javascript and TypeScript
 
 ```typescript
 await client.runSingle(m => m.set('key', 'value'));
@@ -60,7 +60,7 @@ console.log(response);
 
 To cut down on the clutter of selecting  databases, `redis-async` provides helper methods `runInDb` and `runMultipleInDb`. They work the same way as `runSingle` and `runMultiple`, respectively. The only difference is that you need to pass the database index as an argument.
 
-### Javascript and TypeScript
+#### Javascript and TypeScript
 
 ```typescript
 await client.runInDb(2, m => m.set('key', 'greetings from database 2'));
@@ -101,7 +101,17 @@ console.log(response);
 // ----> ['0_1', '0_2']
 ```
 
-## How to run tests
+We also provide a function `getAllKeys` which returns a promise to a  list of all keys in a given database.
+
+#### Javascript and TypeScript
+
+```typescript
+response = await client.getAllKeys(2);
+console.log(response);
+// ----> ['key1', 'key2']
+```
+
+## Testing
 
 ```sh
 npm test
