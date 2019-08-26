@@ -4,9 +4,7 @@ A feature-complete asynchronous client for Redis, with support for TypeScript
 ## Installation
 
 ```sh
-npm install redis-async
-yarn add redis-async
-bower install redis-async
+npm install @mjplabs/redis-async
 ```
 
 ## Initializing a Redis client
