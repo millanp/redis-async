@@ -2,8 +2,8 @@
   "name": "@mjplabs/redis-async",
   "version": "1.0.9",
   "description": "A TypeScript-friendly, feature-complete, asynchronous Redis client for Node.JS",
-  "main": "dist/redis.js",
-  "types": "dist/redis.d.ts",
+  "main": "dist/src/redis.js",
+  "types": "dist/src/redis.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest"
