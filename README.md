@@ -19,7 +19,7 @@ var client = redis.createAsyncClient();
 #### TypeScript
 
 ```typescript
-import { createAsyncClient } from 'redis-async';
+import { createAsyncClient } from '@mjplabs/redis-async';
 const client = createAsyncClient();
 ```
 
